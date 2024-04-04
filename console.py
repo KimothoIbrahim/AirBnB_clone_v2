@@ -125,8 +125,8 @@ class HBNBCommand(cmd.Cmd):
                 splitted_args = arg.split("=")
                 splitted_args[1] = eval(splitted_args[1])
                 if type(splitted_args[1]) == str:
-                    splitted_args[1] = splitted_args[1]
-                    .replace("_", " ").replace('"', '\\"')
+                    splitted_args[1] = splitted_args[1]\
+                        .replace("_", " ").replace('"', '\\"')
                 kw[splitted_args[0]] = splitted_args[1]
 
             if splt[0] not in HBNBCommand.classes:
