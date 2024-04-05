@@ -61,9 +61,7 @@ class FileStorage:
         """ delete given object """
         if obj:
             x = obj.to_dict()['__class__'] + '.' + obj.to_dict()['id']
-            print(x)
         else:
             return
 
         del(self.all()[x])
-        self.save()
