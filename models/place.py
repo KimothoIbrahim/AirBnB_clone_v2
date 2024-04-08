@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, ForeignKey, Float
 from sqlalchemy.orm import relationship
+from os import getenv
 
 
 class Place(BaseModel, Base):
@@ -19,3 +20,24 @@ class Place(BaseModel, Base):
     latitude = Column(Float)
     longitude = Column(Float)
     amenity_ids = []
+
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
+        reviews = relationship("Review",
+                               cascade='all, delete, delete-orphan',
+                               backref="place")
+    else:
+        @property
+        def reviews(self):
+            res = storage.all()
+            lst = []
+            result = []
+            for x in res.keys():
+                x = x.split('.')[0]
+                if x == 'Review':
+                    lst.append(res[x])
+
+            for t in l:
+                if t.place_id == self.id:
+                    result.append(t)
+
+            return r
