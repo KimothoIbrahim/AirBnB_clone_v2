@@ -36,11 +36,10 @@ echo "link created"
 
 chown -R ubuntu:ubuntu /data/
 
-#str="\\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
+str="\\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}"
 
-#sudo sed -i /^"\tserver_name _"/a\ "${str}" /etc/nginx/sites-available/default
-sed -i '13i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
+sudo sed -i /^"\tserver_name _"/a\ "${str}" /etc/nginx/sites-available/default
 
 nginx -t
 
-service nginx reload
+service nginx restart
