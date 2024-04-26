@@ -32,7 +32,7 @@ def do_deploy(archive_path):
             Uncompressed_file = archive_path.split("/")[1].split(".")[0]
             put(archive_path, "/tmp/")
             run(f"mkdir -p /data/web_static/releases/{Uncompressed_file}/")
-            run(f"tar -xzvf /tmp/{archive} \
+            run(f"tar -xzf /tmp/{archive} \
 -C /data/web_static/releases/{Uncompressed_file}/")
             run(f"rm /tmp/{archive}")
             run(f"mv -f /data/web_static/releases/\
