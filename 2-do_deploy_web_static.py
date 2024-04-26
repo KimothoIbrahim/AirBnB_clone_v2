@@ -17,7 +17,7 @@ def do_pack():
 
     try:
         local("if [ ! -d versions ]; then mkdir versions; fi")
-        local(f"tar -czvf versions/web_static_{st}.tgz  web_static")
+        local(f"tar -czvf versions/web_static_{st}.tgz  web_static/")
         print(f"web_static packed: versions/web_static_{st}.tgz")
         return f"versions/web_static_{st}.tgz"
     except Exception as e:
@@ -35,13 +35,15 @@ def do_deploy(archive_path):
             run(f"tar -xzvf /tmp/{archive} \
 -C /data/web_static/releases/{Uncompressed_file}/")
             run(f"rm /tmp/{archive}")
-            """run(f"mv /data/web_static/releases/\
+            run(f"mv -f /data/web_static/releases/\
 {Uncompressed_file}/web_static/*\
- /data/web_static/releases/{Uncompressed_file}/")"""
+ /data/web_static/releases/{Uncompressed_file}/")
             run(f"rm -rf /data/web_static/releases/\
-{Uncompressed_file}/web_static/")
+{Uncompressed_file}/web_static")
+            run(f"rm -rf /data/web_static/current")
             run(f"ln -sf /data/web_static/releases/\
-{Uncompressed_file} /data/web_static/current")
+{Uncompressed_file}/ /data/web_static/current")
+            print("New version deployed!")
             return True
         except Exception as e:
             print("Blunder")
