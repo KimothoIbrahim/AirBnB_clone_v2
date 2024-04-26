@@ -6,7 +6,7 @@ import datetime
 import os
 
 env.use_ssh_config = True
-env.hosts = ['web-01', 'web-02', ]
+env.hosts = ['100.25.158.57', '34.203.75.71', ]
 
 
 def do_pack():
