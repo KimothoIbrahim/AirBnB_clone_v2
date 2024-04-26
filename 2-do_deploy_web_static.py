@@ -5,7 +5,7 @@ from fabric.api import *
 import datetime
 import os
 
-env.hosts = ['100.25.158.57', '34.203.75.71', ]
+env.hosts = ['100.25.158.57', '34.203.75.71']
 
 
 def do_pack():
@@ -45,7 +45,6 @@ def do_deploy(archive_path):
             print("New version deployed!")
             return True
         except Exception as e:
-            print("Blunder")
             return False
     else:
         return False
