@@ -45,7 +45,7 @@ def do_deploy(archive_path):
 
 
 def deploy():
-    """ """
+    """Deploy full site"""
     res1 = do_pack()
     if not res1:
         return false
