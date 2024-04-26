@@ -27,7 +27,10 @@ def do_pack():
 
 def do_deploy(archive_path):
     """ deploy tarball """
-    if os.path.exists(archive_path):
+    if not os.path.exists(archive_path):
+        return False
+
+    try:
         archive = archive_path.split("/")[1]
         Uncompressed_file = archive_path.split("/")[1].split(".")[0]
         put(archive_path, "/tmp/")
@@ -40,11 +43,8 @@ def do_deploy(archive_path):
         run(f"ln -sf /data/web_static/releases/{Uncompressed_file}/ /data/web_static/current")
         print("New version deployed!")
         return True
-    else:
-        print("Error")
+    except Exception as e:
         return False
-    return False
-
 
 def deploy():
     """Deploy full site"""
