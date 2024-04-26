@@ -6,6 +6,8 @@ import datetime
 import os
 
 env.hosts = ['100.25.158.57', '34.203.75.71']
+env.key_filename = '~/.ssh/id_rsa'
+env.user = 'ubuntu'
 
 
 def do_pack():
@@ -47,7 +49,7 @@ def do_deploy(archive_path):
 def deploy():
     """Deploy full site"""
     res1 = do_pack()
-    if not res1:
+    if res1 is None:
         return false
 
     return do_deploy(res1)
