@@ -5,7 +5,6 @@ from fabric.api import *
 import datetime
 import os
 
-env.use_ssh_config = True
 env.hosts = ['100.25.158.57', '34.203.75.71', ]
 
 
@@ -50,8 +49,3 @@ def do_deploy(archive_path):
             return False
     else:
         return False
-
-
-def upload():
-    """ upload """
-    put("0-setup_web_static.sh", "~/0-setup_web_static.sh", mode=744)
