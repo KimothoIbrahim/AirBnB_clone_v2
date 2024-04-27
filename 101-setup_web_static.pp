@@ -25,7 +25,7 @@ file { '/data/web_static/current/':
 }
 
 exec { 'update_config':
-  command => '/usr/bin/sed -i /^"\tserver_name _"/a\ "\\ \n\tlocation\
+  command => '/usr/bin/sudo /usr/bin/sed -i /^"\tserver_name _"/a\ "\\ \n\tlocation\
  /hbnb_static{\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default',
   notify  => Service['nginx'],
   require => Package['nginx']
