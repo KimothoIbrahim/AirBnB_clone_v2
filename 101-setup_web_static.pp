@@ -1,3 +1,5 @@
+#setup server for deployment
+
 package { 'nginx':
   ensure => 'installed'
 }
@@ -10,7 +12,7 @@ file { '/data':
 
 file { '/data/web_static/releases/test/index.html':
   ensure  => 'present',
-  content => 'This is my Website',
+  content => "This is my Website\n",
   require => File['/data']
 }
 
@@ -25,7 +27,7 @@ file { '/data/web_static/current/':
 }
 
 exec { 'update_config':
-  command => '/usr/bin/sudo /usr/bin/sed -i /^"\tserver_name _"/a\ "\\ \n\tlocation\
+  command => '/usr/bin/sed -i /^"\tserver_name _"/a\ "\\ \n\tlocation\
  /hbnb_static{\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default',
   notify  => Service['nginx'],
   require => Package['nginx']
