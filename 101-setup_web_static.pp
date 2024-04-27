@@ -6,8 +6,8 @@ package { 'nginx':
 
 file { '/data':
   ensure => 'directory',
-  owner  => 'kimotho',
-  group  => 'kimotho'
+  owner  => 'ubuntu',
+  group  => 'ubuntu'
 }
 
 file { '/data/web_static/releases/test/index.html':
