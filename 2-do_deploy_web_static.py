@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """fab file"""
 
-from fabric.api import *
-import datetime
+from fabric.api import env, put, run
 import os
 
 env.hosts = ['100.25.158.57', '34.203.75.71']
@@ -12,7 +11,7 @@ env.user = 'ubuntu'
 
 def do_deploy(archive_path):
     """ deploy tarball """
-    if not os.path.exists(archive_path):
+    if not os.path.isfile(archive_path):
         return False
 
     try:
