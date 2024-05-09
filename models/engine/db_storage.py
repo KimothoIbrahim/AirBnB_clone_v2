@@ -42,7 +42,7 @@ class DBStorage:
                 key = type(eachObject).__name__ + '.' + eachObject.id
                 dic.update({key: eachObject})
         else:
-            classes = [State, City]
+            classes = [State, City, User, Place, Review, Amenity]
             for clas in classes:
                 res = self.__session.query(clas).all()
                 for eachObject in res:
