@@ -69,3 +69,10 @@ class DBStorage:
         preSession = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(preSession)
         self.__session = Session()
+
+    def close(self):
+        """
+        method on the private session attribute (self.__session) tips
+        or close() on the class Session tips
+        """
+        self.__session.close()

@@ -65,3 +65,8 @@ class FileStorage:
             return
 
         del(self.all()[x])
+
+
+    def close(self):
+        """ method for deserializing the JSON file to objects """
+        reload()
