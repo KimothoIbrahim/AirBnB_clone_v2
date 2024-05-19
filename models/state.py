@@ -2,6 +2,7 @@
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
 import models
+from models.city import City
 from sqlalchemy.orm import relationship
 from sqlalchemy import String, Column
 
@@ -17,7 +18,7 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         ct = []
-        for key, val in models.storage.all().items():
-            if key == self.__name__ + "." + self.id:
+        for key, val in models.storage.all(City).items():
+            if val.state_id == self.id:
                 ct.append(val)
         return ct
