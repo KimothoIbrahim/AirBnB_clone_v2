@@ -17,6 +17,7 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
+        """ cities property """
         ct = []
         for key, val in models.storage.all(City).items():
             if val.state_id == self.id:
