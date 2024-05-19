@@ -31,7 +31,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """ """
+        """ retrieve averythiing """
         dic = {}
 
         if cls:
@@ -51,20 +51,20 @@ class DBStorage:
         return dic
 
     def new(self, obj):
-        """ """
+        """ add a new object """
         self.__session.add(obj)
 
     def save(self):
-        """ """
+        """ save method """
         self.__session.commit()
 
     def delete(self, obj=None):
-        """ """
+        """ delete method """
         if obj:
             self.__session.delete(obj)
 
     def reload(self):
-        """ """
+        """ helpers """
         Base.metadata.create_all(self.__engine)
         preSession = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(preSession)
