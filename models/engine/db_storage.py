@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""make sql database """
 from sqlalchemy import create_engine
 from os import getenv
 from models.city import City
