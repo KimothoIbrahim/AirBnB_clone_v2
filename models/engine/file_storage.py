@@ -12,9 +12,10 @@ class FileStorage:
         """Returns a dictionary of models currently in storage"""
         if cls:
             grp = {}
-            for key, val in FileStorage.__objects.items():
+            for key, val in self.__objects.items():
                 if val.to_dict()['__class__'] ==\
                    str(cls).split('.')[-1].split("'")[0]:
+                    del val._sa_instance_state
                     grp.update({key: val})
             return grp
         else:
@@ -53,7 +54,7 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                    self.all()[key] = classes[val['__class__']](**val)
+                    self.__objects[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
 
@@ -68,4 +69,4 @@ class FileStorage:
 
     def close(self):
         """ method for deserializing the JSON file to objects """
-        reload()
+        self.reload()
