@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        {% if state is mapping %}
+        <H1>States</H1>
+        <UL>
+            {% for state1 in state.values() %}
+                <LI>{{state1.id}}: <B>{{state1.name}}</B></LI>
+            {% endfor %}
+        </UL>
+        {% elif state is defined %}
+        <H1>State</H1>
+        <H3>Cities</H3>
+            {% for city in state.cities %}
+                <LI>{{city.id}}: {{city.name}}</LI>
+            {% endfor %}
+        {% else %}
+            <H1>Not found!</H1>
+        {% endif %}
+    </BODY>
+</HTML>
