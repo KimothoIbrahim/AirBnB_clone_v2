@@ -120,6 +120,11 @@ class HBNBCommand(cmd.Cmd):
             return
         elif args:
             splt = args.split(" ")
+            
+            if splt[0] not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+            
             kw = {}
             for arg in splt[1:]:
                 splitted_args = arg.split("=")
@@ -127,11 +132,12 @@ class HBNBCommand(cmd.Cmd):
                 if type(splitted_args[1]) == str:
                     splitted_args[1] = splitted_args[1]\
                         .replace("_", " ").replace('"', '\\"')
-                kw[splitted_args[0]] = splitted_args[1]
+                    kw[splitted_args[0]] = splitted_args[1]
+                if type(splitted_args[1]) == float:
+                    kw[splitted_args[0]] = splitted_args[1]
+                if type(splitted_args[1]) == int:
+                    kw[splitted_args[0]] = splitted_args[1]
 
-            if splt[0] not in HBNBCommand.classes:
-                print("** class doesn't exist **")
-                return
         new_instance = HBNBCommand.classes[splt[0]](**kw)
         new_instance.save()
         print(new_instance.id)
