@@ -14,7 +14,7 @@ def states():
     return render_template("7-states_list.html", States=States)
 
 @app.teardown_appcontext
-def teardown(execption):
+def teardown(exception):
     """ chnge session """
     storage.close()
 
